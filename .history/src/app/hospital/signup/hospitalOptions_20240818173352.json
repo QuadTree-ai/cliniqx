@@ -1,0 +1,12 @@
+{
+    "hospitalTypes": ["General", "Specialty", "Teaching", "Community", "Research"],
+    "services": ["Cardiology", "Orthopedics", "Radiology", "Pediatrics", "Oncology", "Emergency"],
+    "departments": ["Surgery", "Internal Medicine", "Pediatrics", "Obstetrics", "Dermatology", "Neurology"],
+    "medicalEquipment": ["X-Ray", "MRI", "Ultrasound", "CT Scanner", "ECG", "Defibrillator"],
+    "relationships": ["Emergency Head", "Medical Director", "Chief of Staff", "Nurse In-Charge", "Administrator"],
+    "insuranceProviders": ["Aetna", "Cigna", "UnitedHealthcare", "Humana", "Blue Cross Blue Shield", "Kaiser Permanente"],
+    "hospitalFacilities": ["ICU", "Emergency", "Neonatal Unit", "Operating Theater", "Laboratory", "Pharmacy"],
+    "affiliations": ["University Hospital", "Private Hospital", "Non-Profit Organization", "Government Health Service"],
+    "availableSpecialties": ["Cardiology", "Oncology", "Neurology", "Pediatrics", "Orthopedics", "Dermatology"]
+  }
+  

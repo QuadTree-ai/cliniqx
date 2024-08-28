@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "esnext",                     // Target modern JavaScript (Next.js is modern by default)
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,                        // Allow JavaScript files to be imported
+    "skipLibCheck": true,                   // Skip type checks for declaration files (.d.ts)
+    "strict": true,                         // Enable all strict type checks
+    "noEmit": true,                         // Do not emit compiled files, useful in Next.js as it compiles on-the-fly
+    "esModuleInterop": true,                // Ensure ES modules and CommonJS interop correctly
+    "module": "esnext",                     // Next.js handles ES modules natively
+    "moduleResolution": "node",             // Node-style module resolution
+    "resolveJsonModule": true,              // Enable importing of JSON files as modules
+    "isolatedModules": true,                // Isolate modules to avoid certain types of global errors
+    "jsx": "preserve",                      // Preserve JSX, Next.js will handle transpilation
+    "incremental": true,                    // Enable incremental compilation for faster builds
+    "allowSyntheticDefaultImports": true,   // Allow default imports from modules with no default export
+    "types": ["node", "jest", "@types/formidable"],  // Include Node.js and Jest types for server-side code
+    "paths": {
+      "@/*": ["./src/*"]                    // Alias `@/` to the `src/` directory
+    },
+    "forceConsistentCasingInFileNames": true // Ensure file names use consistent casing
+  },
+  "include": [
+    "next-env.d.ts", 
+    "**/*.ts", 
+    "**/*.tsx", 
+    ".next/types/**/*.ts", 
+    "next.config.js"                        // Include Next.js config if needed
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"                                  // Exclude the build output directory if it exists
+  ]
+}

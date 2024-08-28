@@ -1,0 +1,12 @@
+{
+    "hospitalTypes": ["General", "Specialty", "Teaching", "Community", "Research", "Government", "Private"],
+    "services": ["Cardiology", "Orthopedics", "Radiology", "Pediatrics", "Oncology", "Emergency", "Nephrology", "Gastroenterology", "Urology", "Pulmonology", "Endocrinology"],
+    "departments": ["Surgery", "Internal Medicine", "Pediatrics", "Obstetrics", "Dermatology", "Neurology", "Gynecology", "ENT", "Orthopedics", "Psychiatry", "Pathology"],
+    "medicalEquipment": ["X-Ray", "MRI", "Ultrasound", "CT Scanner", "ECG", "Defibrillator", "Dialysis Machine", "Ventilator", "Endoscopy", "Oxygen Concentrator"],
+    "relationships": ["Emergency Head", "Medical Director", "Chief of Staff", "Nurse In-Charge", "Administrator", "Medical Officer", "Resident Doctor"],
+    "insuranceProviders": ["Star Health", "Max Bupa", "Religare Health", "HDFC ERGO", "ICICI Lombard", "New India Assurance", "United India Insurance"],
+    "hospitalFacilities": ["ICU", "Emergency", "Neonatal Unit", "Operating Theater", "Laboratory", "Pharmacy", "Blood Bank", "Dialysis Unit", "Radiology Department", "Physiotherapy"],
+    "affiliations": ["AIIMS", "Apollo Hospitals", "Fortis Healthcare", "Max Healthcare", "Kokilaben Dhirubhai Ambani Hospital", "Medanta", "Narayana Health"],
+    "availableSpecialties": ["Cardiology", "Oncology", "Neurology", "Pediatrics", "Orthopedics", "Dermatology", "Urology", "Gastroenterology", "Nephrology", "Pulmonology", "Endocrinology"]
+  }
+  

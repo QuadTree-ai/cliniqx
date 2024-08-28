@@ -1,0 +1,97 @@
+// /pages/api/upload-and-analyze.ts
+
+import { NextApiRequest, NextApiResponse } from 'next';
+import formidable, { File } from 'formidable';
+import { MongoClient, GridFSBucket } from 'mongodb';
+import { createReadStream } from 'fs';
+import { promises as fs } from 'fs';
+import path from 'path';
+import pdfParse from 'pdf-parse';
+import OpenAI from 'openai';
+
+// Initialize OpenAI client with the API key
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+// Set MongoDB URI and Database Name
+const MONGODB_URI = process.env.MONGODB_URI as string;
+const MONGODB_DB_NAME = 'reportData';
+
+// MongoClient variable to cache the client across requests
+let client: MongoClient | null = null;
+
+// Function to ensure a connection to the MongoDB database
+const connectToDatabase = async () => {
+  if (!client) {
+    client = new MongoClient(MONGODB_URI);
+    await client.connect();
+  }
+  return client.db(MONGODB_DB_NAME);
+};
+
+// Disable Next.js's built-in body parsing, as we'll be handling FormData
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+// Main handler function for processing POST requests
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Method Not Allowed' });
+  }
+
+  const db = await connectToDatabase();
+  const form = new formidable.IncomingForm();
+
+  form.parse(req, async (err, fields, files: formidable.Files) => {
+    if (err) {
+      console.error('Form parse error:', err);
+      return res.status(500).json({ message: 'Form parsing error' });
+    }
+
+    const file: formidable.File = Array.isArray(files.file) ? files.file[0] : files.file;
+    if (!file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+
+    const filePath = file.filepath;
+    const textData = await extractTextFromPDF(filePath);
+
+    const analysis = await fetchOpenaiAnalysis(textData);
+
+    // Store the file metadata and analysis in MongoDB
+    const metadata = {
+      filename: file.originalFilename,
+      filepath: filePath,
+      size: file.size,
+      type: file.mimetype,
+      analysis,
+      createdAt: new Date(),
+    };
+    await db.collection('uploads').insertOne(metadata);
+
+    // Optionally, delete the file after processing
+    await fs.unlink(filePath);
+
+    res.status(200).json({ message: 'File uploaded and analyzed successfully', analysis });
+  });
+}
+
+// Function to extract text from PDF using pdf-parse
+async function extractTextFromPDF(filePath: string): Promise<string> {
+  const fileBuffer = await fs.readFile(filePath);
+  return pdfParse(fileBuffer);
+}
+
+// Function to send extracted text to OpenAI for analysis
+async function fetchOpenaiAnalysis(text: string): Promise<string> {
+  const response = await openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: `Analyze the following medical report and identify any potential health issues. Specify the problem, the associated body part, and its severity (low, moderate, high):\n\n${text}`,
+    max_tokens: 500,
+  });
+  return response.choices[0].text.trim();
+}

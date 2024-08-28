@@ -1,0 +1,38 @@
+import fetch from 'node-fetch';
+
+// Define the interface for the OpenAI response data
+interface OpenAIResponse {
+  choices: Array<{ text: string }>;
+  // Add more fields if needed
+}
+
+// Function to fetch analysis from OpenAI
+export const fetchOpenaiAnalysis = async (textData: string): Promise<OpenAIResponse> => {
+  const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer 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`, // Replace with your OpenAI API key
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: 'gpt-3.5-turbo', // Use gpt-4 or any newer model
+      messages: [{ role: 'user', content: textData }],
+      max_tokens: 100,
+    }),
+  });
+
+  if (!response.ok) {
+    const responseData = await response.json();
+    throw new Error(`OpenAI API Error: ${responseData.error.message}`);
+  }
+
+  const responseData: OpenAIResponse = await response.json();
+  console.log('OpenAI API Response:', responseData);
+  return responseData;
+};
+
+// Function to handle API errors
+export const handleApiError = (error: Error): void => {
+  console.error('API Error:', error.message || error);
+  // Handle additional error logging or user notifications if needed
+};

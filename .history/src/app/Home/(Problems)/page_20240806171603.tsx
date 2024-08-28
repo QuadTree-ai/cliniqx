@@ -1,0 +1,100 @@
+// src/app/Home/(Problems)/page.tsx
+
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import CardDemo from "./data";
+import { Badge } from "@/components/ui/badge";
+
+interface Statistic {
+  name: string;
+  ratePerSecond: number;
+  image: string;
+  value: number;
+}
+
+const initialStatistics: Statistic[] = [
+  { name: "Heart Disease", ratePerSecond: 0.033, image: "/Problems/HeartDisease.jpg", value: 0 },
+  { name: "Injury", ratePerSecond: 0.05, image: "/Problems/Injury.jpg", value: 0 },
+  { name: "Respiratory Disease", ratePerSecond: 0.025, image: "/Problems/RespiratoryDisease.jpg", value: 0 },
+  { name: "Hospital Admission", ratePerSecond: 0.067, image: "/Problems/HospitalAdmission.jpg", value: 0 },
+  { name: "Cancer Detected", ratePerSecond: 0.0083, image: "/Problems/CancerDetected.jpg", value: 0 },
+  { name: "Diabetes", ratePerSecond: 0.02, image: "/Problems/Diabetes.jpg", value: 0 },
+  { name: "Emergency Visits", ratePerSecond: 0.1, image: "/Problems/EmergencyVisits.jpg", value: 0 },
+  { name: "Mental Health Issues", ratePerSecond: 0.042, image: "/Problems/MentalHealthIssues.jpg", value: 0 }
+];
+
+const getCurrentDayCount = (rate: number) => {
+  const now = new Date();
+  const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const secondsSinceStart = (now.getTime() - startOfDay.getTime()) / 1000;
+  return Math.floor(rate * secondsSinceStart);
+};
+
+export function CardsContainer() {
+  const [statistics, setStatistics] = useState<Statistic[]>([]);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const updatedStats = initialStatistics.map(stat => ({
+      ...stat,
+      value: getCurrentDayCount(stat.ratePerSecond),
+    }));
+    setStatistics(updatedStats);
+  }, []);
+
+  useEffect(() => {
+    if (marqueeRef.current) {
+      const scrollWidth = marqueeRef.current.scrollWidth;
+      const keyframeEffect = new KeyframeEffect(
+        marqueeRef.current,
+        [
+          { transform: 'translateX(0)' },
+          { transform: `translateX(-${scrollWidth / 2}px)` }
+        ],
+        {
+          duration: 50000, // Adjust duration here to control speed
+          iterations: Infinity
+        }
+      );
+      const animation = new Animation(keyframeEffect);
+      animation.play();
+    }
+  }, [statistics]);
+
+  return (
+    <section className="relative overflow-hidden h-screen w-full">
+      <div className="text-center py-12">
+        <h1 className="text-5xl font-bold text-white">Health Impact Statistics</h1>
+        <Badge variant="secondary" className="mt-4">Health-related Incidents</Badge>
+      </div>
+      <div className="marquee w-full" ref={marqueeRef}>
+        <div className="marquee-content flex">
+          {statistics.map((stat, index) => (
+            <CardDemo
+              key={index}
+              title={stat.name}
+              description="This card shows live statistics based on real-time data analysis."
+              author="Health Research"
+              readTime="Dynamic Data"
+              image={stat.image}
+              number={stat.value}
+            />
+          ))}
+        </div>
+      </div>
+      <style jsx>{`
+        .marquee {
+          width: 100%;
+          overflow-x: hidden;
+        }
+        .marquee-content {
+          display: flex;
+          gap: 2rem;
+        }
+      `}</style>
+    </section>
+  );
+}
+
+export default CardsContainer;

@@ -1,0 +1,89 @@
+{
+    "general": [
+      {
+        "label": "Hospital Name",
+        "name": "hospitalName",
+        "type": "text",
+        "placeholder": "Enter Hospital Name"
+      },
+      {
+        "label": "Website",
+        "name": "website",
+        "type": "text",
+        "placeholder": "Enter Website URL"
+      },
+      {
+        "label": "Hospital Type",
+        "name": "hospitalType",
+        "type": "select",
+        "options": ["General", "Specialty", "Teaching", "Community", "Research"]
+      },
+      {
+        "label": "Accreditation",
+        "name": "accreditation",
+        "type": "text",
+        "placeholder": "Enter Accreditation"
+      }
+    ],
+    "contact": [
+      {
+        "label": "Phone Number",
+        "name": "phoneNumber",
+        "type": "tel",
+        "placeholder": "Enter Phone Number"
+      },
+      {
+        "label": "Email",
+        "name": "email",
+        "type": "email",
+        "placeholder": "Enter Email Address"
+      },
+      {
+        "label": "Fax",
+        "name": "fax",
+        "type": "text",
+        "placeholder": "Enter Fax Number",
+        "optional": true
+      },
+      {
+        "label": "Toll-Free Number",
+        "name": "tollFreeNumber",
+        "type": "text",
+        "placeholder": "Enter Toll-Free Number",
+        "optional": true
+      }
+    ],
+    "address": [
+      {
+        "label": "Street",
+        "name": "street",
+        "type": "text",
+        "placeholder": "Enter Street"
+      },
+      {
+        "label": "City",
+        "name": "city",
+        "type": "text",
+        "placeholder": "Enter City"
+      },
+      {
+        "label": "State",
+        "name": "state",
+        "type": "text",
+        "placeholder": "Enter State"
+      },
+      {
+        "label": "Postal Code",
+        "name": "postalCode",
+        "type": "text",
+        "placeholder": "Enter Postal Code"
+      },
+      {
+        "label": "Country",
+        "name": "country",
+        "type": "text",
+        "placeholder": "Enter Country"
+      }
+    ]
+  }
+  

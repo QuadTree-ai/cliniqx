@@ -1,0 +1,35 @@
+/* eslint-disable @next/next/no-img-element */
+import React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Logo from "../Logo";
+import NavMenu from "./navmenu";
+
+const Navbar = () => {
+  return (
+    <nav className="fixed w-full z-10 top-0 bg-white shadow-md">
+      <div className="w-full px-4 py-3 flex justify-between items-center">
+        <Logo className="flex-shrink-0 w-24 h-auto md:w-32 lg:w-40" />
+        <div className="flex-grow flex justify-center">
+          <NavMenu />
+        </div>
+        <div className="flex space-x-4 items-center">
+          <Link href="/login" passHref>
+            <Button className="text-white bg-yellow-500 hover:bg-yellow-600 transition-colors duration-200">
+              Login
+            </Button>
+          </Link>
+          <Link href="/signup" passHref>
+            <Button className="text-white bg-black hover:bg-gray-800 transition-colors duration-200 flex items-center space-x-2">
+              <span>Try Now</span>
+              <ArrowRight className="w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;

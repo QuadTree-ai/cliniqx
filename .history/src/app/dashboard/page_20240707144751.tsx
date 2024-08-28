@@ -1,0 +1,15 @@
+import Sidebar from './components/Sidebar'
+import Header from './components/header/page'
+import MainContent from './components/maincontent /MainContent'
+
+export default function Dashboard() {
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <Sidebar />
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <Header />
+        <MainContent />
+      </div>
+    </div>
+  )
+}
