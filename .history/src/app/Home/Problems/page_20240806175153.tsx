@@ -1,3 +1,5 @@
+// src/app/Home/(Problems)/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -29,7 +31,7 @@ const getCurrentDayCount = (rate: number) => {
   return Math.floor(rate * secondsSinceStart);
 };
 
-export default function Page() {
+export function CardsContainer() {
   const [statistics, setStatistics] = useState<Statistic[]>([]);
 
   useEffect(() => {
@@ -82,3 +84,5 @@ export default function Page() {
     </section>
   );
 }
+
+export default CardsContainer;
