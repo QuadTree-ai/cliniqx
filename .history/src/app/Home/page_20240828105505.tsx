@@ -6,7 +6,7 @@ import Features from "./Features/page";
 import Services from "./Services/page";
 import Footer from "../Footer";
 import Navbar from "./Navbar/page";
-import TextHighlight from "./Introduction/page";
+import TextHighlight from "./(Introduction)/page";
 import CardsContainer from "./Problems/page";
 import Launchpad from "./launchpad";
 import Showcase from "./Showcase/page";
