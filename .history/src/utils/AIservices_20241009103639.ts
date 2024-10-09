@@ -22,6 +22,7 @@ const AI_SERVICES = [
     const model = new ChatOpenAI({
       model: 'gpt-3.5-turbo-0125',
       temperature: 0,
+      
     });
     return model.generate([[{ text }]] as unknown as any).then((response: any) => {
       const castedResponse = response as ChatResponse;
