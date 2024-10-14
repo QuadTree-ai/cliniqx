@@ -62,8 +62,9 @@ const LoginModal = () => {
               >
                 {loading ? "Sending..." : "Send One Time Password"}
               </Button>
-              <p className="text-center my-8 text-gray-400">— or —</p>
-              <Button
+              {/* Removed Continue with Email button */}
+              {/* Removed Sign in with Google button */}
+              {/* <Button
                 onClick={handleEmailLogin}
                 className="w-full py-4 text-lg font-bold text-white bg-gradient-to-r from-yellow-500 to-orange-600 rounded-lg shadow-lg hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-opacity-50 transition duration-300"
               >
@@ -74,7 +75,7 @@ const LoginModal = () => {
                 className="w-full py-4 text-lg font-bold text-white bg-gradient-to-r from-red-500 to-pink-600 rounded-lg shadow-lg hover:bg-gradient-to-l focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-opacity-50 transition duration-300"
               >
                 Sign in with Google
-              </Button>
+              </Button> */}
             </div>
           )}
         </CardContent>
