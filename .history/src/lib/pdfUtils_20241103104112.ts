@@ -17,8 +17,8 @@ export class PDFExtractor {
       const dataBuffer = await fs.readFile(filePath);
       const data = await pdfParse(dataBuffer, {
         max: options.maxPages,
-        pagerender: options.pageNumbers
-          ? (pageData: any) => options.pageNumbers!.includes(pageData.pageNumber) ? String(pageData.pageNumber) : ''
+        pageRender: options.pageNumbers
+          ? (pageData) => options.pageNumbers!.includes(pageData.pageNumber)
           : undefined,
       });
       return data.text.trim();
