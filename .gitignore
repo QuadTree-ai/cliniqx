@@ -25,8 +25,23 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
+# environment files
+.env
+.env.local
 .env*.local
+.env.development
+.env.test
+.env.production
+.env.backup
+.env.development.local
+.env.test.local
+.env.production.local
+
+# history files
+.history
+.history/
+*.history
+/.history/
 
 # vercel
 .vercel
@@ -34,3 +49,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
