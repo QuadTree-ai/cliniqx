@@ -1,15 +1,15 @@
 // src/app/Home/Home.tsx
 
 import React from "react";
-import Hero from "./(Hero)/page";
-import Features from "./(Features)/page";
-import Services from "./(Services)/page";
+import Hero from "./Hero/page";
+import Features from "./Features/page";
+import Services from "./OfferServices/page";
 import Footer from "../Footer";
-import Navbar from "./(Navbar)/page";
-import TextHighlight from "./(Introduction)/page";
-import CardsContainer from "./(Problems)/page";
+import Navbar from "./Navbar/page";
+import TextHighlight from "./Introduction/page";
+import CardsContainer from "./Problems/page";
 import Launchpad from "./launchpad";
-import Showcase from "./(Showcase)/page";
+import Showcase from "./Showcase/page";
 
 const HomePage = () => {
   return (

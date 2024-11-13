@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import InputOTPDemo from "@/app/otp/InputOTP";
-import CliniQXCard from "@/app/Home/(Features)/cliniqxcard"; // Initial card
-import BSCliniQXCard from "@/app/Home/(Features)/bscliniqxcard"; // Updated path
+import CliniQXCard from "@/app/Home/Features/cliniqxcard"; // Initial card
+import BSCliniQXCard from "@/app/Home/Features/bscliniqxcard"; // Updated path
 
 export default function CustomerSignup() {
   const [termsAccepted, setTermsAccepted] = useState(false);
