@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true, // Enforces strict mode for React components
-  swcMinify: true, // Enables the SWC compiler for faster builds and minification
+  swcMinify: true, // Enables SWC compiler for faster builds and minification
   optimizeFonts: true, // Optimizes font loading
   images: {
     domains: ['example.com'], // Add domains for external images
@@ -10,6 +10,7 @@ const nextConfig = {
   },
   compress: true, // Enable gzip compression
   poweredByHeader: false, // Remove X-Powered-By header
+
   async headers() {
     return [
       {
@@ -31,9 +32,9 @@ const nextConfig = {
       },
     ];
   },
+
   async redirects() {
     return [
-      // Optional: Define redirects if needed
       {
         source: '/old-path',
         destination: '/new-path',
@@ -41,45 +42,43 @@ const nextConfig = {
       },
     ];
   },
+
   async rewrites() {
     return [
-      // Optional: Define rewrites if needed
       {
         source: '/api/:path*',
         destination: 'https://external-api.com/:path*',
       },
     ];
   },
+
   experimental: {
-    // Optional: Enable experimental features if needed
-    buildCaching: true, // Enables build caching
     scrollRestoration: true, // Enables scroll restoration on navigation
-    optimizeCss: true, // Enable CSS optimization
-    serverActions: true, // Enable server actions (if using Next.js 13+)
+    optimizeCss: true, // Enables CSS optimization
   },
+
   typescript: {
-    // Optional: Configure TypeScript settings
-    ignoreBuildErrors: false, // Set to true to ignore TypeScript build errors
+    ignoreBuildErrors: false, // Do not ignore TypeScript build errors
   },
+
   devIndicators: {
-    // Optional: Customize dev indicators
     buildActivity: true, // Show build activity indicator
   },
+
   webpack: (config, { dev, isServer }) => {
-    // Custom webpack config (if needed)
     if (!dev && !isServer) {
-      Object.assign(config.resolve.alias, {
+      config.resolve.alias = {
+        ...config.resolve.alias,
         'react/jsx-runtime.js': 'preact/compat/jsx-runtime',
         react: 'preact/compat',
         'react-dom/test-utils': 'preact/test-utils',
         'react-dom': 'preact/compat',
-      });
+      };
     }
     return config;
-    
   },
+
   env: {
-    // Add environment variables
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
   },
 };
